@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e;
+source scripts/set-env
+
+## Prepare the environment
+echo "Compile Molochv2.1"
+cp scripts/set-env repos/Molochv2.1/.env
+cp hardhat.config.js repos/Molochv2.1
+cd repos/Molochv2.1
+mkdir -p contracts 
+mv *.sol contracts 2>/dev/null || true
+mv oz contracts 2>/dev/null || true
+npx hardhat compile
+
+## Prepare the environment
+echo "Compile NiftyMInionSummoner"
+cd ../../
+cp scripts/set-env repos/NiftyMInionSummoner/.env
+cp hardhat.config.js repos/NiftyMInionSummoner
+cd repos/NiftyMInionSummoner
+mkdir -p contracts 
+mv *.sol contracts || true
+npx hardhat compile
+
+echo "Compile Wrap-N-Zap"
+cd ../../
+cp scripts/set-env repos/wrap-n-zap/.env
+cd repos/wrap-n-zap
+npx hardhat compile

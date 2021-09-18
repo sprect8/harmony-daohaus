@@ -1,0 +1,29 @@
+{
+  "name": "harmony-daohaus",
+  "version": "1.0.0",
+  "description": "Scripts to deploy Dao Haus onto the harmony one network",
+  "main": "index.js",
+  "scripts": {
+    "get": "npm run get-moloch && npm run get-nifty-minion-summoner && npm run get-wrap-n-zap",
+    "get-moloch": "scripts/get-repos/moloch",
+    "get-nifty-minion-summoner": "scripts/get-repos/nifty-minion-summoner",
+    "get-wrap-n-zap": "scripts/get-repos/wrap-n-zap"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sprect8/harmony-daohaus.git"
+  },
+  "author": "victaphu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sprect8/harmony-daohaus/issues"
+  },
+  "homepage": "https://github.com/sprect8/harmony-daohaus#readme",
+  "devDependencies": {
+    "hardhat": "^2.1.2"
+  },
+  "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "dotenv": "^10.0.0"
+  }
+}
