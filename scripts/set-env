@@ -1,3 +1,5 @@
-ETHERSCAN_API_KEY=ABC1
-INFURA_PROJECT_ID=ABC1
-SEED=ABC1
+# note this mnemonic does not have funds, just testnet ONE tokens
+
+ETHERSCAN_API_KEY=
+INFURA_PROJECT_ID=
+SEED="target domain lawn loan cram into problem must raven key trap horse" 

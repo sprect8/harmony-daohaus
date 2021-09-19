@@ -1,0 +1,40 @@
+#!/bin/bash
+
+set -e;
+source scripts/set-env
+
+## Prepare the environment
+rm -rf deploys/
+mkdir -p deploys
+
+## copy the repos with compiled contracts into our deploys directory for staging and deployment
+## Molochv2 deploy
+cp -r repos/Molochv2.1 deploys/
+## copy the necessary scripts and package environments
+cp repos/wrap-n-zap/package.json deploys/Molochv2.1/
+cp scripts/deployScripts/deployMolochv2.1.js ./deploys/Molochv2.1
+
+## NiftyMInionSummoner deploy
+cp -r repos/NiftyMInionSummoner deploys/
+## copy the necessary scripts and package environments
+cp repos/wrap-n-zap/package.json deploys/NiftyMInionSummoner/
+cp scripts/deployScripts/deployNiftyMinionSummoner.js deploys/NiftyMInionSummoner/
+
+## Wrap-N-Zap deploy
+cp -r repos/wrap-n-zap deploys/
+cp hardhat.config.js deploys/wrap-n-zap/
+cp scripts/deployScripts/deployWrapNZap.js deploys/wrap-n-zap/
+
+
+### Start to deploy
+cd deploys/Molochv2.1
+npm i
+npx hardhat run deployMolochv2.1.js --network harmonyTest > ../../deploy.testnet
+
+cd ../NiftyMInionSummoner
+npm i
+npx hardhat run deployNiftyMinionSummoner.js --network harmonyTest >> ../../deploy.testnet
+
+cd ../wrap-n-zap
+npm i
+npx hardhat run deployWrapNZap.js --network harmonyTest >> ../../deploy.testnet
