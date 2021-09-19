@@ -29,12 +29,24 @@ cp scripts/deployScripts/deployWrapNZap.js deploys/wrap-n-zap/
 ### Start to deploy
 cd deploys/Molochv2.1
 npm i
-npx hardhat run deployMolochv2.1.js --network harmonyTest > ../../deploy.testnet
+echo "## Deploying Molochv2.1  "  > ../../deploy.testnet.md
+echo '```  '  >> ../../deploy.testnet.md
+npx hardhat run deployMolochv2.1.js --network harmonyTest >> ../../deploy.testnet.md
+echo '```  '  >> ../../deploy.testnet.md
 
 cd ../NiftyMInionSummoner
 npm i
-npx hardhat run deployNiftyMinionSummoner.js --network harmonyTest >> ../../deploy.testnet
+echo >> ../../deploy.testnet.md
+echo "## Deploying Nifty Minion  "   >> ../../deploy.testnet.md
+echo '```  '  >> ../../deploy.testnet.md
+npx hardhat run deployNiftyMinionSummoner.js --network harmonyTest >> ../../deploy.testnet.md
+echo '```  '  >> ../../deploy.testnet.md
 
 cd ../wrap-n-zap
+rm -rf node_modules
 npm i
-npx hardhat run deployWrapNZap.js --network harmonyTest >> ../../deploy.testnet
+echo >> ../../deploy.testnet.md
+echo "## Deploying Wrap N Zap  "  >> ../../deploy.testnet.md
+echo '```  '  >> ../../deploy.testnet.md
+npx hardhat run deployWrapNZap.js --network harmonyTest >> ../../deploy.testnet.md
+echo '```  '  >> ../../deploy.testnet.md

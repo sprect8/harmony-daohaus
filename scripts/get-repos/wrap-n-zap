@@ -6,4 +6,3 @@ cd repos;
 echo "Fetching wrap-n-zap"
 git clone git@github.com:HausDAO/wrap-n-zap.git
 cd wrap-n-zap
-npm i
