@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e;
+source scripts/set-env
+
+## copy the repos with compiled contracts into our deploys directory for staging and deployment
+## Molochv2 deploy
+cp -r repos/Molochv2.1 deploys/
+## copy the necessary scripts and package environments
+cp repos/wrap-n-zap/package.json deploys/Molochv2.1/
+cp scripts/deployScripts/deployMolochv2.1.js ./deploys/Molochv2.1
+
+### Start to deploy
+cd deploys/Molochv2.1
+npm i
+echo "## Deploying Molochv2.1  "  > ../../deploy.testnet.md
+echo '```  '  >> ../../deploy.testnet.md
+npx hardhat run deployMolochv2.1.js --network localhost >> ../../deploy.testnet.md
+echo '```  '  >> ../../deploy.testnet.md

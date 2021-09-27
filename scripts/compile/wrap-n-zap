@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e;
+source scripts/set-env
+
+echo "Compile Wrap-N-Zap"
+cd ../../
+cp scripts/set-env repos/wrap-n-zap/.env
+cd repos/wrap-n-zap
+npm i
+npx hardhat compile

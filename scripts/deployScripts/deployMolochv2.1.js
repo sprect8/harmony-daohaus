@@ -68,12 +68,12 @@ async function main() {
 	const moloch = await deployMoloch(deployer);
 	const summoner = await deployMolochSummoner(moloch, deployer);
 
-	if (chainId == 1337) {
-		await hre.ethernal.push({
-			name: 'Molochv2.1',
-			address: summoner.address,
-		});
-	}
+	// if (chainId == 1337) {
+	// 	await hre.ethernal.push({
+	// 		name: 'Molochv2.1',
+	// 		address: summoner.address,
+	// 	});
+	// }
 }
 
 main()

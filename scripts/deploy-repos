@@ -9,10 +9,19 @@ mkdir -p deploys
 
 ## copy the repos with compiled contracts into our deploys directory for staging and deployment
 ## Molochv2 deploy
+cp -r repos/MinionSummoner deploys/
+## copy the necessary scripts and package environments
+cp repos/wrap-n-zap/package.json deploys/MinionSummoner/
+cp scripts/deployScripts/deployMolochv1.js ./deploys/MinionSummoner
+
+
+## Molochv2 deploy
 cp -r repos/Molochv2.1 deploys/
 ## copy the necessary scripts and package environments
 cp repos/wrap-n-zap/package.json deploys/Molochv2.1/
 cp scripts/deployScripts/deployMolochv2.1.js ./deploys/Molochv2.1
+
+
 
 ## NiftyMInionSummoner deploy
 cp -r repos/NiftyMInionSummoner deploys/
@@ -32,6 +41,13 @@ npm i
 echo "## Deploying Molochv2.1  "  > ../../deploy.testnet.md
 echo '```  '  >> ../../deploy.testnet.md
 npx hardhat run deployMolochv2.1.js --network harmonyTest >> ../../deploy.testnet.md
+echo '```  '  >> ../../deploy.testnet.md
+
+cd ../MinionSummoner
+npm i
+echo "## Deploying Molochv1  "  >> ../../deploy.testnet.md
+echo '```  '  >> ../../deploy.testnet.md
+npx hardhat run deployMolochv1.js --network harmonyTest >> ../../deploy.testnet.md
 echo '```  '  >> ../../deploy.testnet.md
 
 cd ../NiftyMInionSummoner

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e;
+source scripts/set-env
+
+mkdir -p deploys
+rm -rf deploys/MinionSummoner
+## copy the repos with compiled contracts into our deploys directory for staging and deployment
+## MinionSummoner deploy
+cp -r repos/MinionSummoner deploys/
+## copy the necessary scripts and package environments
+cp repos/wrap-n-zap/package.json deploys/MinionSummoner/
+cp scripts/deployScripts/deployMolochv1.js ./deploys/MinionSummoner/
+
+### Start to deploy
+cd deploys/MinionSummoner
+npm i
+echo "## Deploying Molochv1  "  >> ../../deploy.testnet.md
+echo '```  '  >> ../../deploy.testnet.md
+npx hardhat run deployMolochv1.js --network harmonyTest >> ../../deploy.testnet.md
+echo '```  '  >> ../../deploy.testnet.md

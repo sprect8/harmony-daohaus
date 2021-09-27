@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e;
+source scripts/set-env
+
+
+## Prepare the environment
+echo "Compile NiftyMInionSummoner"
+cd ../../
+cp scripts/set-env repos/NiftyMInionSummoner/.env
+cp hardhat.config.js repos/NiftyMInionSummoner
+cd repos/NiftyMInionSummoner
+mkdir -p contracts 
+mv *.sol contracts || true
+npx hardhat compile

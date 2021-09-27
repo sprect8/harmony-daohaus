@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e;
+source scripts/set-env
+
+## Prepare the environment
+echo "Compile Molochv2.1"
+cp scripts/set-env repos/Molochv2.1/.env
+cp hardhat.config.js repos/Molochv2.1
+cd repos/Molochv2.1
+mkdir -p contracts 
+mv *.sol contracts 2>/dev/null || true
+mv oz contracts 2>/dev/null || true
+npx hardhat compile

@@ -45,12 +45,12 @@ async function main() {
 	console.log('Contract Address:', wrapNZapFactory.address);
 	console.log('Block Number:', receipt.blockNumber);
 
-	if (chainId == 1337) {
-		await hre.ethernal.push({
-			name: 'WrapNZapFactory',
-			address: wrapNZapFactory.address,
-		});
-	}
+	// if (chainId == 1337) {
+	// 	await hre.ethernal.push({
+	// 		name: 'WrapNZapFactory',
+	// 		address: wrapNZapFactory.address,
+	// 	});
+	// }
 }
 
 main()

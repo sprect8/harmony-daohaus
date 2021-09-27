@@ -1,3 +1,4 @@
+const { ethers } = require('hardhat');
 const hre = require('hardhat');
 const ethernal = require('hardhat-ethernal');
 
@@ -22,25 +23,24 @@ const networkCurrency = {
 	1666600000: "ONE",
 };
 
+async function deployMoloch(deployer) {
+	console.log("Deploying the Moloch V1");
+	const template = await ethers.getContractFactory("contracts/MinionFactory.sol:Minion");
+	const moloch = await template.deploy();
 
-async function deployMinion(deployer) {
-	console.log("Deploying the Minion");
-	const template = await ethers.getContractFactory("contracts/NiftyMinionFactory.sol:Minion");
-	const minon = await template.deploy();
-
-	await minon.deployed();
-	const txHash = minon.deployTransaction.hash;
+	await moloch.deployed();
+	const txHash = moloch.deployTransaction.hash;
 	const receipt = await deployer.provider.getTransactionReceipt(txHash);
 	console.log('Transaction Hash:', txHash);
-	console.log('Contract Address:', minon.address);
+	console.log('Contract Address:', moloch.address);
 	console.log('Block Number:', receipt.blockNumber);
 
-	return minon;
+	return moloch;
 }
 
-async function deployMinionSummoner(moloch, deployer) {
-	console.log("Deploying the Minion Summoner using Minion Template", moloch.address);
-	const factory = await ethers.getContractFactory("contracts/NiftyMinionFactory.sol:MinionFactory");
+async function deployMolochSummoner(moloch, deployer) {
+	console.log("Deploying the Moloch Factory using Moloch Template", moloch.address);
+	const factory = await ethers.getContractFactory("contracts/MinionFactory.sol:MinionFactory");
 	const summoner = await factory.deploy(moloch.address);
 
 	await summoner.deployed();
@@ -57,7 +57,7 @@ async function main() {
 	const [deployer] = await hre.ethers.getSigners();
 	const address = await deployer.getAddress();
 	const { chainId } = await deployer.provider.getNetwork();
-	console.log('Deploying Nifty Minion Summoner on network:', networkName[chainId]);
+	console.log('Deploying Moloch-V1 on network:', networkName[chainId]);
 	console.log('Account address:', address);
 	console.log(
 		'Account balance:',
@@ -65,8 +65,8 @@ async function main() {
 		networkCurrency[chainId]
 	);
 
-	const minion = await deployMinion(deployer);
-	const summoner = await deployMinionSummoner(minion, deployer);
+	const moloch = await deployMoloch(deployer);
+	const summoner = await deployMolochSummoner(moloch, deployer);
 
 	// if (chainId == 1337) {
 	// 	await hre.ethernal.push({

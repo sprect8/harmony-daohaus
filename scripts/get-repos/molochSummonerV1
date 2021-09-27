@@ -6,6 +6,6 @@ echo "Cleaning and creating 'repos' dir"
 mkdir -p repos;
 cd repos;
 
-echo "Fetching moloch"
-git clone git@github.com:HausDAO/Molochv2.1.git
+echo "Fetching moloch v1"
+git clone git@github.com:HausDAO/MinionSummoner.git
 

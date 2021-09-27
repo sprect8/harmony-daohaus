@@ -4,12 +4,22 @@
   "description": "Scripts to deploy Dao Haus onto the harmony one network",
   "main": "index.js",
   "scripts": {
-    "get": "npm run get-moloch && npm run get-nifty-minion-summoner && npm run get-wrap-n-zap",
+    "init": "rm -r repos && mkdir -p repos",
+    "get": "npm run init && npm run get-moloch && npm run get-nifty-minion-summoner && npm run get-wrap-n-zap && npm run get-moloch-v1",
     "get-moloch": "scripts/get-repos/moloch",
+    "get-moloch-v1": "scripts/get-repos/molochSummonerV1",
     "get-nifty-minion-summoner": "scripts/get-repos/nifty-minion-summoner",
     "get-wrap-n-zap": "scripts/get-repos/wrap-n-zap",
     "compile": "scripts/compile-repos",
-    "deploy": "scripts/deploy-repos"
+    "compile-moloch": "scripts/compile/moloch",
+    "compile-moloch-v1": "scripts/compile/molochSummonerV1",
+    "compile-nifty-minion-summoner": "scripts/compile/nifty-minion-summoner",
+    "compile-wrap-n-zap": "scripts/compile/wrap-n-zap",
+    "deploy": "scripts/deploy-repos",
+    "deploy-moloch": "node scripts/deployScripts/deployMolochv2.1.js",
+    "deploy-moloch-v1": "scripts/deployScripts/deployMolochv1",
+    "deploy-nifty-minion-summoner": "node scripts/deployScripts/deployNiftyMinionSummoner.js",
+    "deploy-wrap-n-zap": "node scripts/deployScripts/deployWrapNZap.js"
   },
   "repository": {
     "type": "git",

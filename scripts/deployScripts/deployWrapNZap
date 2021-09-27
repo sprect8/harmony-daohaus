@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e;
+source scripts/set-env
+
+## Wrap-N-Zap deploy
+cp -r repos/wrap-n-zap deploys/
+cp hardhat.config.js deploys/wrap-n-zap/
+cp scripts/deployScripts/deployWrapNZap.js deploys/wrap-n-zap/
+
+cd ../wrap-n-zap
+rm -rf node_modules
+npm i
+echo >> ../../deploy.testnet.md
+echo "## Deploying Wrap N Zap  "  >> ../../deploy.testnet.md
+echo '```  '  >> ../../deploy.testnet.md
+npx hardhat run deployWrapNZap.js --network localhost >> ../../deploy.testnet.md
+echo '```  '  >> ../../deploy.testnet.md

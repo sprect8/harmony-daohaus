@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e;
+source scripts/set-env
+
+## NiftyMInionSummoner deploy
+cp -r repos/NiftyMInionSummoner deploys/
+## copy the necessary scripts and package environments
+cp repos/wrap-n-zap/package.json deploys/NiftyMInionSummoner/
+cp scripts/deployScripts/deployNiftyMinionSummoner.js deploys/NiftyMInionSummoner/
+
+cd ../NiftyMInionSummoner
+npm i
+echo >> ../../deploy.testnet.md
+echo "## Deploying Nifty Minion  "   >> ../../deploy.testnet.md
+echo '```  '  >> ../../deploy.testnet.md
+npx hardhat run deployNiftyMinionSummoner.js --network localhost >> ../../deploy.testnet.md
+echo '```  '  >> ../../deploy.testnet.md

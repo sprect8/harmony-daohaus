@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e;
+source scripts/set-env
+
+## Prepare the environment
+echo "Compile Molochv1"
+cp scripts/set-env repos/MinionSummoner/.env
+cp hardhat.config.js repos/MinionSummoner
+cd repos/MinionSummoner
+mkdir -p contracts 
+mv *.sol contracts 2>/dev/null || true
+mv oz contracts 2>/dev/null || true
+npx hardhat compile
