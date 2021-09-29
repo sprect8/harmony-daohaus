@@ -2,6 +2,9 @@
 
 set -e;
 source scripts/set-env
+export OUTPUT_FILE=deploy.$1.md
+
+echo $OUTPUT_FILE
 
 ## Prepare the environment
 rm -rf deploys/
@@ -38,31 +41,31 @@ cp scripts/deployScripts/deployWrapNZap.js deploys/wrap-n-zap/
 ### Start to deploy
 cd deploys/Molochv2.1
 npm i
-echo "## Deploying Molochv2.1  "  > ../../deploy.testnet.md
-echo '```  '  >> ../../deploy.testnet.md
-npx hardhat run deployMolochv2.1.js --network harmonyTest >> ../../deploy.testnet.md
-echo '```  '  >> ../../deploy.testnet.md
+echo "## Deploying Molochv2.1  "  > ../../$OUTPUT_FILE
+echo '```  '  >> ../../$OUTPUT_FILE
+npx hardhat run deployMolochv2.1.js --network $1 >> ../../$OUTPUT_FILE
+echo '```  '  >> ../../$OUTPUT_FILE
 
 cd ../MinionSummoner
 npm i
-echo "## Deploying Molochv1  "  >> ../../deploy.testnet.md
-echo '```  '  >> ../../deploy.testnet.md
-npx hardhat run deployMolochv1.js --network harmonyTest >> ../../deploy.testnet.md
-echo '```  '  >> ../../deploy.testnet.md
+echo "## Deploying Molochv1  "  >> ../../$OUTPUT_FILE
+echo '```  '  >> ../../$OUTPUT_FILE
+npx hardhat run deployMolochv1.js --network $1 >> ../../$OUTPUT_FILE
+echo '```  '  >> ../../$OUTPUT_FILE
 
 cd ../NiftyMInionSummoner
 npm i
-echo >> ../../deploy.testnet.md
-echo "## Deploying Nifty Minion  "   >> ../../deploy.testnet.md
-echo '```  '  >> ../../deploy.testnet.md
-npx hardhat run deployNiftyMinionSummoner.js --network harmonyTest >> ../../deploy.testnet.md
-echo '```  '  >> ../../deploy.testnet.md
+echo >> ../../$OUTPUT_FILE
+echo "## Deploying Nifty Minion  "   >> ../../$OUTPUT_FILE
+echo '```  '  >> ../../$OUTPUT_FILE
+npx hardhat run deployNiftyMinionSummoner.js --network $1 >> ../../$OUTPUT_FILE
+echo '```  '  >> ../../$OUTPUT_FILE
 
 cd ../wrap-n-zap
 rm -rf node_modules
 npm i
-echo >> ../../deploy.testnet.md
-echo "## Deploying Wrap N Zap  "  >> ../../deploy.testnet.md
-echo '```  '  >> ../../deploy.testnet.md
-npx hardhat run deployWrapNZap.js --network harmonyTest >> ../../deploy.testnet.md
-echo '```  '  >> ../../deploy.testnet.md
+echo >> ../../$OUTPUT_FILE
+echo "## Deploying Wrap N Zap  "  >> ../../$OUTPUT_FILE
+echo '```  '  >> ../../$OUTPUT_FILE
+npx hardhat run deployWrapNZap.js --network $1 >> ../../$OUTPUT_FILE
+echo '```  '  >> ../../$OUTPUT_FILE

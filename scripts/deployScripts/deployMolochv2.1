@@ -13,7 +13,7 @@ cp scripts/deployScripts/deployMolochv2.1.js ./deploys/Molochv2.1
 ### Start to deploy
 cd deploys/Molochv2.1
 npm i
-echo "## Deploying Molochv2.1  "  > ../../deploy.testnet.md
-echo '```  '  >> ../../deploy.testnet.md
-npx hardhat run deployMolochv2.1.js --network localhost >> ../../deploy.testnet.md
-echo '```  '  >> ../../deploy.testnet.md
+echo "## Deploying Molochv2.1  "  > ../../deploy.$1.md
+echo '```  '  >> ../../deploy.$1.md
+npx hardhat run deployMolochv2.1.js --network $1 >> ../../deploy.$1.md
+echo '```  '  >> ../../deploy.$1.md

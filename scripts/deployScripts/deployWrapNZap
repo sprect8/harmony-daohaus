@@ -11,8 +11,8 @@ cp scripts/deployScripts/deployWrapNZap.js deploys/wrap-n-zap/
 cd ../wrap-n-zap
 rm -rf node_modules
 npm i
-echo >> ../../deploy.testnet.md
-echo "## Deploying Wrap N Zap  "  >> ../../deploy.testnet.md
-echo '```  '  >> ../../deploy.testnet.md
-npx hardhat run deployWrapNZap.js --network localhost >> ../../deploy.testnet.md
-echo '```  '  >> ../../deploy.testnet.md
+echo >> ../../deploy.$1.md
+echo "## Deploying Wrap N Zap  "  >> ../../deploy.$1.md
+echo '```  '  >> ../../deploy.$1.md
+npx hardhat run deployWrapNZap.js --network $1 >> ../../deploy.$1.md
+echo '```  '  >> ../../deploy.$1.md

@@ -11,8 +11,8 @@ cp scripts/deployScripts/deployNiftyMinionSummoner.js deploys/NiftyMInionSummone
 
 cd ../NiftyMInionSummoner
 npm i
-echo >> ../../deploy.testnet.md
-echo "## Deploying Nifty Minion  "   >> ../../deploy.testnet.md
-echo '```  '  >> ../../deploy.testnet.md
-npx hardhat run deployNiftyMinionSummoner.js --network localhost >> ../../deploy.testnet.md
-echo '```  '  >> ../../deploy.testnet.md
+echo >> ../../deploy.$1.md
+echo "## Deploying Nifty Minion  "   >> ../../deploy.$1.md
+echo '```  '  >> ../../deploy.$1.md
+npx hardhat run deployNiftyMinionSummoner.js --network $1 >> ../../deploy.$1.md
+echo '```  '  >> ../../deploy.$1.md

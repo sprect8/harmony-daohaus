@@ -15,7 +15,7 @@ cp scripts/deployScripts/deployMolochv1.js ./deploys/MinionSummoner/
 ### Start to deploy
 cd deploys/MinionSummoner
 npm i
-echo "## Deploying Molochv1  "  >> ../../deploy.testnet.md
-echo '```  '  >> ../../deploy.testnet.md
-npx hardhat run deployMolochv1.js --network harmonyTest >> ../../deploy.testnet.md
-echo '```  '  >> ../../deploy.testnet.md
+echo "## Deploying Molochv1  "  >> ../../deploy.$1.md
+echo '```  '  >> ../../deploy.$1.md
+npx hardhat run deployMolochv1.js --network $1 >> ../../deploy.$1.md
+echo '```  '  >> ../../deploy.$1.md
